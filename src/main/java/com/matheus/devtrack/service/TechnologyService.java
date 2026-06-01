@@ -1,5 +1,7 @@
 package com.matheus.devtrack.service;
 
+import com.matheus.devtrack.dto.TechnologyRequestDTO;
+import com.matheus.devtrack.dto.TechnologyResponseDTO;
 import com.matheus.devtrack.entity.Technology;
 import com.matheus.devtrack.repository.TechnologyRepository;
 import org.springframework.stereotype.Service;
@@ -15,8 +17,22 @@ public class TechnologyService {
         this.repository = repository;
     }
 
-    public Technology create(Technology technology) {
-        return repository.save(technology);
+    public TechnologyResponseDTO create(TechnologyRequestDTO request) {
+
+        Technology technology = new Technology();
+
+        technology.setName(request.name());
+        technology.setTargetHours(request.targetHours());
+        technology.setStudiedHours(request.studiedHours());
+
+        Technology saved = repository.save(technology);
+
+        return new TechnologyResponseDTO(
+                saved.getId(),
+                saved.getName(),
+                saved.getTargetHours(),
+                saved.getStudiedHours()
+        );
     }
 
     public List<Technology> listAll() {

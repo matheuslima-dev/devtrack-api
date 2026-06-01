@@ -18,7 +18,7 @@ public class Technology {
 
     private Integer targetHours;
 
-    private Integer studieHours;
+    private Integer studiedHours;
 
     public Technology()
     {}
@@ -27,11 +27,11 @@ public class Technology {
             Long id,
             String name,
             Integer targetHours,
-            Integer studieHours)
+            Integer studiedHours)
     {
         this.id = id;
         this.name = name;
         this.targetHours = targetHours;
-        this.studieHours = studieHours;
+        this.studiedHours = studiedHours;
     }
 }
